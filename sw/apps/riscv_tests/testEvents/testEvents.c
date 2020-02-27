@@ -55,7 +55,7 @@ void check_flush(testresult_t *result, void (*start)(), void (*stop)()) {
                 "addi %[act], %[act], 7;"
                 "addi %[act], %[act], 8;"
                 "addi %[act], %[act], 9;"
-                "addi %[act], %[act], 10;"
+                "addi %[act], %[act], 20;"
                 : [act] "+r" (act));
 
   if(act != exp) {

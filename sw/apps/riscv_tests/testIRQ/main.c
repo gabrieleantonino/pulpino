@@ -33,15 +33,15 @@ void __attribute__ ((noinline)) isr_infinite_hw_loop();
 #define get_mstatus(mstatus)       asm volatile ("csrrs %[d], mstatus, x0" : [d] "=r" (mstatus))
 
 testcase_t testcases[] = {
-  { .name = " 1. test_infinite_jmp_loop",     .test = test_infinite_jmp_loop     },
-  { .name = " 2. test_infinite_branch_loop",  .test = test_infinite_branch_loop  },
-  { .name = " 3. test_interrupt_loop",        .test = test_interrupt_loop        },
-  { .name = " 4. test_hazard_interrupt",      .test = test_hazard_interrupt      },
+   { .name = " 1. test_infinite_jmp_loop",     .test = test_infinite_jmp_loop     },
+//  { .name = " 2. test_infinite_branch_loop",  .test = test_infinite_branch_loop  },
+//  { .name = " 3. test_interrupt_loop",        .test = test_interrupt_loop        },
+//  { .name = " 4. test_hazard_interrupt",      .test = test_hazard_interrupt      },
 #ifdef USE_MUL
-  { .name = " 5. test_infinite_jmp_mulh",     .test = test_infinite_jmp_mulh     },
+ // { .name = " 5. test_infinite_jmp_mulh",     .test = test_infinite_jmp_mulh     },
 #endif
 #ifdef PULP_EXT
-  { .name = " 6. test_infinite_hw_loop",      .test = test_infinite_hw_loop      },
+//  { .name = " 6. test_infinite_hw_loop",      .test = test_infinite_hw_loop      },
 #endif
   {0, 0}
 };
@@ -57,6 +57,9 @@ volatile int mepc_mulh;
 volatile int mepc_hazard;
 
 int main() {
+
+  printf("Hello World!!!!!\n");
+
   return run_suite(testcases);
 }
 
@@ -100,6 +103,7 @@ void test_infinite_jmp_loop(testresult_t *result, void (*start)(), void (*stop)(
   irq_trig = 0;
 
 }
+/*
 //----------------------------------------------------------------------------
 // 2. while(1) with branch
 //----------------------------------------------------------------------------
@@ -141,6 +145,8 @@ void test_infinite_branch_loop(testresult_t *result, void (*start)(), void (*sto
   irq_trig = 0;
 
 }
+
+
 //----------------------------------------------------------------------------
 // 3. for loop interrupted
 //----------------------------------------------------------------------------
@@ -181,14 +187,14 @@ void test_interrupt_loop(testresult_t *result, void (*start)(), void (*stop)()) 
   // disable timer
   TPRA = 0x0;
   ECP = 0x1;
-
+// int_disable();
   check_uint32(result, "interrupt loop", irq_trig, 10);
 
   irq_trig = 0;
 
 }
-
-
+/*
+/*
 //----------------------------------------------------------------------------
 // 4. hazard interrupted
 //----------------------------------------------------------------------------
@@ -317,23 +323,23 @@ void test_infinite_hw_loop(testresult_t *result, void (*start)(), void (*stop)()
 
 }
 #endif
-
+*/
 
 void ISR_TA_CMP(void) {
 
   ICP = (1 << 29);
 
   switch (testcase_current) {
-  case 1:
+   case 1:
      isr_infinite_jmp_loop();
      break;
-  case 2:
+/*  case 2:
      isr_infinite_branch_loop();
-     break;
-  case 3:
+     break;*/
+/*  case 3:
      isr_interrupt_loop();
      break;
-  case 4:
+ /* case 4:
      isr_hazard_interrupt();
      break;
   case 5:
@@ -342,6 +348,7 @@ void ISR_TA_CMP(void) {
   case 6:
      isr_infinite_hw_loop();
      break;
+*/
   default:
      exit(1);
      break;
@@ -360,12 +367,20 @@ void __attribute__ ((noinline)) isr_infinite_jmp_loop()
   if(irq_trig > 10) {
     dest_mepc = mepc_jmp;
     change_mepc(dest_mepc);
+
   }
 }
 
+//#include <stdio.h>
+
+//int main()
+//{
+//  printf("Hello World!!!!!\n");
+//  return 0;
+//}
 /*
   -- ISR 2
-*/
+
 
 void __attribute__ ((noinline)) isr_infinite_branch_loop()
 {
@@ -377,10 +392,10 @@ void __attribute__ ((noinline)) isr_infinite_branch_loop()
     change_mepc(dest_mepc);
   }
 }
-
-/*
+*
+*
   -- ISR 3
-*/
+/
 
 void __attribute__ ((noinline)) isr_interrupt_loop()
 {
@@ -399,7 +414,7 @@ void __attribute__ ((noinline)) isr_interrupt_loop()
 
 /*
   -- ISR 4
-*/
+
 
 void __attribute__ ((noinline)) isr_hazard_interrupt()
 {
@@ -428,9 +443,9 @@ void __attribute__ ((noinline)) isr_hazard_interrupt()
 
 }
 
-/*
+*
   -- ISR 5
-*/
+/
 
 void __attribute__ ((noinline)) isr_infinite_jmp_mulh()
 {
@@ -443,10 +458,13 @@ void __attribute__ ((noinline)) isr_infinite_jmp_mulh()
   }
 }
 
-/*
+*
   -- ISR 6
-*/
+/
 
 void __attribute__ ((noinline)) isr_infinite_hw_loop()
 {
 }
+*
+*/
+
