@@ -1,0 +1,431 @@
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2015.1 (lin64) Build 1215546 Mon Apr 27 19:07:21 MDT 2015
+| Date             : Fri Jan 10 07:01:10 2020
+| Host             : localhost.localdomain running 64-bit unknown
+| Command          : report_power -file pulpino_power_routed.rpt -pb pulpino_power_summary_routed.pb
+| Design           : pulpino
+| Device           : xc7z020clg484-1
+| Design State     : Routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+-------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+-------+
+| Total On-Chip Power (W)  | 0.145 |
+| Dynamic (W)              | 0.024 |
+| Device Static (W)        | 0.121 |
+| Effective TJA (C/W)      | 11.5  |
+| Max Ambient (C)          | 83.3  |
+| Junction Temperature (C) | 26.7  |
+| Confidence Level         | Low   |
+| Setting File             | ---   |
+| Simulation Activity File | ---   |
+| Design Nets Matched      | NA    |
++--------------------------+-------+
+
+
+1.1 On-Chip Components
+----------------------
+
++----------------+-----------+----------+-----------+-----------------+
+| On-Chip        | Power (W) | Used     | Available | Utilization (%) |
++----------------+-----------+----------+-----------+-----------------+
+| Clocks         |     0.006 |        5 |       --- |             --- |
+| Slice Logic    |     0.007 |    29342 |       --- |             --- |
+|   LUT as Logic |     0.006 |    15162 |     53200 |           28.50 |
+|   CARRY4       |    <0.001 |      896 |     13300 |            6.74 |
+|   Register     |    <0.001 |     9908 |    106400 |            9.31 |
+|   F7/F8 Muxes  |    <0.001 |      909 |     53200 |            1.71 |
+|   Others       |     0.000 |      263 |       --- |             --- |
+| Signals        |     0.008 |    22238 |       --- |             --- |
+| Block RAM      |     0.002 |       16 |       140 |           11.43 |
+| DSPs           |    <0.001 |        6 |       220 |            2.73 |
+| I/O            |    <0.001 |      143 |       200 |           71.50 |
+| Static Power   |     0.121 |          |           |                 |
+| Total          |     0.145 |          |           |                 |
++----------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------+-------------+-----------+-------------+------------+
+| Vccint    |       1.000 |     0.031 |       0.023 |      0.008 |
+| Vccaux    |       1.800 |     0.019 |       0.000 |      0.019 |
+| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
+| Vcco18    |       1.800 |     0.001 |       0.000 |      0.001 |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.001 |       0.000 |      0.001 |
+| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
+| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
+| MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccpint   |       1.000 |     0.017 |       0.000 |      0.017 |
+| Vccpaux   |       1.800 |     0.010 |       0.000 |      0.010 |
+| Vccpll    |       1.800 |     0.003 |       0.000 |      0.003 |
+| Vcco_ddr  |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco_mio0 |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vcco_mio1 |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
++-----------+-------------+-----------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                                | Action                                                                                                     |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                                       |                                                                                                            |
+| Clock nodes activity        | High       | User specified more than 95% of clocks                 |                                                                                                            |
+| I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view   |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views |
+| Device models               | High       | Device models are Production                           |                                                                                                            |
+|                             |            |                                                        |                                                                                                            |
+| Overall confidence level    | Low        |                                                        |                                                                                                            |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+------------------------+
+| Ambient Temp (C)      | 25.0                   |
+| ThetaJA (C/W)         | 11.5                   |
+| Airflow (LFM)         | 250                    |
+| Heat Sink             | none                   |
+| ThetaSA (C/W)         | 0.0                    |
+| Board Selection       | medium (10"x10")       |
+| # of Board Layers     | 8to11 (8 to 11 Layers) |
+| Board Temperature (C) | 25.0                   |
++-----------------------+------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++---------+-----------+-----------------+
+| Clock   | Domain    | Constraint (ns) |
++---------+-----------+-----------------+
+| clk     | clk       |            50.0 |
+| spi_sck | spi_clk_i |            40.0 |
+| tck     | tck_i     |            40.0 |
++---------+-----------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++-----------------------------------------------+-----------+
+| Name                                          | Power (W) |
++-----------------------------------------------+-----------+
+| pulpino                                       |     0.024 |
+|   pulpino_i                                   |     0.023 |
+|     axi_interconnect_i                        |    <0.001 |
+|       axi_node_i                              |    <0.001 |
+|         _REQ_BLOCK_GEN[0].REQ_BLOCK           |    <0.001 |
+|           AR_ALLOCATOR                        |    <0.001 |
+|             AW_ARB_TREE                       |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           AW_ALLOCATOR                        |    <0.001 |
+|             AW_ARB_TREE                       |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           DW_ALLOC                            |    <0.001 |
+|             MASTER_ID_FIFO                    |    <0.001 |
+|         _REQ_BLOCK_GEN[1].REQ_BLOCK           |    <0.001 |
+|           AR_ALLOCATOR                        |    <0.001 |
+|             AW_ARB_TREE                       |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           AW_ALLOCATOR                        |    <0.001 |
+|             AW_ARB_TREE                       |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           DW_ALLOC                            |    <0.001 |
+|             MASTER_ID_FIFO                    |    <0.001 |
+|         _REQ_BLOCK_GEN[2].REQ_BLOCK           |    <0.001 |
+|           AR_ALLOCATOR                        |    <0.001 |
+|             AW_ARB_TREE                       |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           AW_ALLOCATOR                        |    <0.001 |
+|             AW_ARB_TREE                       |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           DW_ALLOC                            |    <0.001 |
+|             MASTER_ID_FIFO                    |    <0.001 |
+|         _RESP_BLOCK_GEN[0].RESP_BLOCK         |    <0.001 |
+|           AR_ADDR_DEC                         |    <0.001 |
+|           AW_ADDR_DEC                         |    <0.001 |
+|           BR_ALLOC                            |    <0.001 |
+|             ARB_TREE.BR_ARB_TREE              |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           BW_ALLOC                            |    <0.001 |
+|             ARB_TREE.BW_ARB_TREE              |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           DW_ADDR_DEC                         |    <0.001 |
+|             MASTER_ID_FIFO                    |    <0.001 |
+|         _RESP_BLOCK_GEN[1].RESP_BLOCK         |    <0.001 |
+|           AR_ADDR_DEC                         |    <0.001 |
+|           AW_ADDR_DEC                         |    <0.001 |
+|           BR_ALLOC                            |    <0.001 |
+|             ARB_TREE.BR_ARB_TREE              |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           BW_ALLOC                            |    <0.001 |
+|             ARB_TREE.BW_ARB_TREE              |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           DW_ADDR_DEC                         |    <0.001 |
+|             MASTER_ID_FIFO                    |    <0.001 |
+|         _RESP_BLOCK_GEN[2].RESP_BLOCK         |    <0.001 |
+|           AR_ADDR_DEC                         |    <0.001 |
+|           AW_ADDR_DEC                         |    <0.001 |
+|           BR_ALLOC                            |    <0.001 |
+|             ARB_TREE.BR_ARB_TREE              |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           BW_ALLOC                            |    <0.001 |
+|             ARB_TREE.BW_ARB_TREE              |    <0.001 |
+|               RR_REQ                          |    <0.001 |
+|           DW_ADDR_DEC                         |    <0.001 |
+|             MASTER_ID_FIFO                    |    <0.001 |
+|     clk_rst_gen_i                             |    <0.001 |
+|       i_rst_gen_soc                           |    <0.001 |
+|     core_region_i                             |     0.017 |
+|       CORE.RISCV_CORE                         |     0.010 |
+|         cs_registers_i                        |    <0.001 |
+|         debug_unit_i                          |    <0.001 |
+|         ex_stage_i                            |     0.001 |
+|           alu_i_0                             |    <0.001 |
+|             int_div.div_i                     |    <0.001 |
+|           mult_i                              |    <0.001 |
+|           nolabel_line360                     |    <0.001 |
+|         id_stage_i                            |     0.004 |
+|           controller_i                        |    <0.001 |
+|           hwloop_regs_i                       |    <0.001 |
+|           int_controller_i                    |    <0.001 |
+|           registers_i                         |     0.001 |
+|         if_stage_i                            |     0.003 |
+|           prefetch_32.prefetch_buffer_i       |     0.002 |
+|             fifo_i                            |     0.002 |
+|         load_store_unit_i                     |    <0.001 |
+|       adv_dbg_if_i                            |     0.002 |
+|         cluster_tap_i                         |    <0.001 |
+|         dbg_module_i                          |     0.002 |
+|           i_dbg_axi                           |     0.001 |
+|             axi_biu_i                         |    <0.001 |
+|             axi_crc_i                         |    <0.001 |
+|           i_dbg_cpu_or1k                      |    <0.001 |
+|             or1k_biu_i                        |    <0.001 |
+|             or1k_crc_i                        |    <0.001 |
+|             or1k_statusreg_i                  |    <0.001 |
+|       axi_slice_core2axi                      |    <0.001 |
+|         WITH_SLICE.axi_slice_i                |    <0.001 |
+|           ar_buffer_i                         |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           aw_buffer_i                         |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           b_buffer_i                          |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           r_buffer_i                          |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           w_buffer_i                          |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|       core2axi_i                              |    <0.001 |
+|         core2axi_i                            |    <0.001 |
+|       data_mem                                |    <0.001 |
+|         sp_ram_i                              |    <0.001 |
+|           U0                                  |    <0.001 |
+|             inst_blk_mem_gen                  |    <0.001 |
+|               gnativebmg.native_blk_mem_gen   |    <0.001 |
+|                 valid.cstr                    |    <0.001 |
+|                   has_mux_a.A                 |    <0.001 |
+|                   ramloop[0].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|                   ramloop[1].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|                   ramloop[2].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|                   ramloop[3].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|                   ramloop[4].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|                   ramloop[5].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|                   ramloop[6].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|                   ramloop[7].ram.r            |    <0.001 |
+|                     prim_noinit.ram           |    <0.001 |
+|       data_mem_axi_if                         |    <0.001 |
+|         axi_mem_if_SP_i                       |    <0.001 |
+|           READ_CTRL                           |    <0.001 |
+|           Slave_ar_buffer_LP                  |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_aw_buffer_LP                  |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_b_buffer_LP                   |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_r_buffer_LP                   |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_w_buffer_LP                   |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           WRITE_CTRL                          |    <0.001 |
+|       data_ram_mux_i                          |    <0.001 |
+|       instr_mem                               |     0.002 |
+|         boot_rom_wrap_i                       |    <0.001 |
+|           boot_code_i                         |    <0.001 |
+|         sp_ram_wrap_i                         |     0.001 |
+|           sp_ram_i                            |     0.001 |
+|             U0                                |     0.001 |
+|               inst_blk_mem_gen                |     0.001 |
+|                 gnativebmg.native_blk_mem_gen |     0.001 |
+|                   valid.cstr                  |     0.001 |
+|                     has_mux_a.A               |    <0.001 |
+|                     ramloop[0].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|                     ramloop[1].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|                     ramloop[2].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|                     ramloop[3].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|                     ramloop[4].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|                     ramloop[5].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|                     ramloop[6].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|                     ramloop[7].ram.r          |    <0.001 |
+|                       prim_noinit.ram         |    <0.001 |
+|       instr_mem_axi_if                        |     0.001 |
+|         axi_mem_if_SP_i                       |     0.001 |
+|           READ_CTRL                           |    <0.001 |
+|           Slave_ar_buffer_LP                  |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_aw_buffer_LP                  |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_b_buffer_LP                   |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_r_buffer_LP                   |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_w_buffer_LP                   |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           WRITE_CTRL                          |    <0.001 |
+|       instr_ram_mux_i                         |    <0.001 |
+|     peripherals_i                             |     0.006 |
+|       apb2per_debug_i                         |    <0.001 |
+|       apb_event_unit_i                        |    <0.001 |
+|         i_event_unit                          |    <0.001 |
+|         i_interrupt_unit                      |    <0.001 |
+|         i_sleep_unit                          |    <0.001 |
+|       apb_fll_if_i                            |    <0.001 |
+|       apb_gpio_i                              |    <0.001 |
+|       apb_i2c_i                               |    <0.001 |
+|         byte_controller                       |    <0.001 |
+|           bit_controller                      |    <0.001 |
+|       apb_pulpino_i                           |    <0.001 |
+|       apb_spi_master_i                        |    <0.001 |
+|         u_axiregs                             |    <0.001 |
+|         u_rxfifo                              |    <0.001 |
+|         u_spictrl                             |    <0.001 |
+|           u_clkgen                            |    <0.001 |
+|           u_rxreg                             |    <0.001 |
+|           u_txreg                             |    <0.001 |
+|         u_txfifo                              |    <0.001 |
+|       apb_timer_i                             |    <0.001 |
+|         TIMER_GEN[0].timer_i                  |    <0.001 |
+|         TIMER_GEN[1].timer_i                  |    <0.001 |
+|       apb_uart_i                              |     0.001 |
+|         UART_BG16                             |    <0.001 |
+|         UART_BG2                              |    <0.001 |
+|         UART_BIDET                            |    <0.001 |
+|         UART_ED_CTS                           |    <0.001 |
+|         UART_ED_DCD                           |    <0.001 |
+|         UART_ED_DSR                           |    <0.001 |
+|         UART_ED_RI                            |    <0.001 |
+|         UART_FEDET                            |    <0.001 |
+|         UART_IF_CTS                           |    <0.001 |
+|         UART_IF_DCD                           |    <0.001 |
+|         UART_IF_DSR                           |    <0.001 |
+|         UART_IF_RI                            |    <0.001 |
+|         UART_IIC                              |    <0.001 |
+|         UART_IIC_THRE_ED                      |    <0.001 |
+|         UART_IS_CTS                           |    <0.001 |
+|         UART_IS_DCD                           |    <0.001 |
+|         UART_IS_DSR                           |    <0.001 |
+|         UART_IS_RI                            |    <0.001 |
+|         UART_IS_SIN                           |    <0.001 |
+|         UART_PEDET                            |    <0.001 |
+|         UART_RCLK                             |    <0.001 |
+|         UART_RX                               |    <0.001 |
+|           RX_BRC                              |    <0.001 |
+|           RX_IFSB                             |    <0.001 |
+|           RX_MVF                              |    <0.001 |
+|         UART_RXFF                             |    <0.001 |
+|         UART_TX                               |    <0.001 |
+|         UART_TXFF                             |    <0.001 |
+|       axi2apb_i                               |     0.001 |
+|         axi2apb_i                             |     0.001 |
+|           Slave_ar_buffer                     |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_aw_buffer                     |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_b_buffer                      |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_r_buffer                      |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|           Slave_w_buffer                      |    <0.001 |
+|             buffer_i                          |    <0.001 |
+|       axi_spi_slave_i                         |     0.001 |
+|         axi_spi_slave_i                       |     0.001 |
+|           u_axiplug                           |    <0.001 |
+|           u_dcfifo_rx                         |    <0.001 |
+|             u_din                             |    <0.001 |
+|               buffer                          |    <0.001 |
+|               full                            |    <0.001 |
+|                 full_synch                    |    <0.001 |
+|               write_tr                        |    <0.001 |
+|             u_dout                            |    <0.001 |
+|               empty_synch                     |    <0.001 |
+|               read_tr                         |    <0.001 |
+|           u_dcfifo_tx                         |    <0.001 |
+|             u_din                             |    <0.001 |
+|               buffer                          |    <0.001 |
+|               full                            |    <0.001 |
+|                 full_synch                    |    <0.001 |
+|               write_tr                        |    <0.001 |
+|             u_dout                            |    <0.001 |
+|               empty_synch                     |    <0.001 |
+|               read_tr                         |    <0.001 |
+|           u_rxreg                             |    <0.001 |
+|           u_slave_sm                          |    <0.001 |
+|             u_spiregs                         |    <0.001 |
+|           u_syncro                            |    <0.001 |
+|           u_txreg                             |    <0.001 |
++-----------------------------------------------+-----------+
+
+
