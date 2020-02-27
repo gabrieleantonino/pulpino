@@ -38,13 +38,16 @@ module core_region
     output logic        core_busy_o,
     input  logic        clock_gating_i,
     input  logic [31:0] boot_addr_i,
-
+    output logic        tmr_err,
     AXI_BUS.Master      core_master,
     AXI_BUS.Master      dbg_master,
     AXI_BUS.Slave       data_slave,
     AXI_BUS.Slave       instr_slave,
     DEBUG_BUS.Slave     debug,
-
+    //TMR_GPIO
+    input  logic [31:0] TMR_GPIO,
+         
+ 
     // JTAG signals
     input  logic        tck_i,
     input  logic        trstn_i,
@@ -82,6 +85,7 @@ module core_region
   logic [3:0]   core_data_be;
   logic [31:0]  core_data_rdata;
   logic [31:0]  core_data_wdata;
+  
 
   // signals to/from AXI mem
   logic                        is_axi_addr;
@@ -253,6 +257,7 @@ module core_region
       .irq_sec_i       ( 1'b0              ),
       .sec_lvl_o       (                   ),
 
+      .TMR_GPIO_IN     (TMR_GPIO), 
       .debug_req_i     ( debug.req         ),
       .debug_gnt_o     ( debug.gnt         ),
       .debug_rvalid_o  ( debug.rvalid      ),
@@ -266,7 +271,7 @@ module core_region
 
       .fetch_enable_i  ( fetch_enable_i    ),
       .core_busy_o     ( core_busy_o       ),
-
+      .tmr_err          (  tmr_err   ),
       // apu-interconnect
       // handshake signals
       .apu_master_req_o      (             ),

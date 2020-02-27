@@ -101,7 +101,7 @@ module pulpino_top
   logic        core_busy_int;
   logic        clk_gate_core_int;
   logic [31:0] irq_to_core_int;
-
+  logic        tmr_event_err;
   logic        lock_fll_int;
   logic        cfgreq_fll_int;
   logic        cfgack_fll_int;
@@ -111,6 +111,11 @@ module pulpino_top
   logic        cfgweb_n_fll_int;
   logic        rstn_int;
   logic [31:0] boot_addr_int;
+  
+  //TMR_GPIO
+  //logic [31:0] TMR_GPIO;
+    
+  
 
   AXI_BUS
   #(
@@ -165,6 +170,8 @@ module pulpino_top
   //----------------------------------------------------------------------------//
   // Core region
   //----------------------------------------------------------------------------//
+   //assign TMR_GPIO  = gpio_input ;
+  
   core_region
   #(
     .AXI_ADDR_WIDTH       ( `AXI_ADDR_WIDTH      ),
@@ -188,13 +195,14 @@ module pulpino_top
     .core_busy_o    ( core_busy_int     ),
     .clock_gating_i ( clk_gate_core_int ),
     .boot_addr_i    ( boot_addr_int     ),
-
+    .tmr_err        ( tmr_event_err     ), //event from TMR
     .core_master    ( masters[0]        ),
     .dbg_master     ( masters[1]        ),
     .data_slave     ( slaves[1]         ),
     .instr_slave    ( slaves[0]         ),
     .debug          ( debug             ),
-
+    //TMR_GPIO
+    .TMR_GPIO               (gpio_in),
     .tck_i          ( tck_i             ),
     .trstn_i        ( trstn_i           ),
     .tms_i          ( tms_i             ),
@@ -275,7 +283,7 @@ module pulpino_top
     .fetch_enable_i  ( fetch_enable_i    ),
     .fetch_enable_o  ( fetch_enable_int  ),
     .clk_gate_core_o ( clk_gate_core_int ),
-
+    .tmr_err         (  tmr_event_err   ),//event from the TMR  
     .fll1_req_o      ( cfgreq_fll_int    ),
     .fll1_wrn_o      ( cfgweb_n_fll_int  ),
     .fll1_add_o      ( cfgad_fll_int     ),

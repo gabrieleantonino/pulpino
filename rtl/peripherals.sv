@@ -1,10 +1,10 @@
 // Copyright 2017 ETH Zurich and University of Bologna.
 // Copyright and related rights are licensed under the Solderpad Hardware
-// License, Version 0.51 (the “License”); you may not use this file except in
+// License, Version 0.51 (the "License"); you may not use this file except in
 // compliance with the License.  You may obtain a copy of the License at
 // http://solderpad.org/licenses/SHL-0.51. Unless required by applicable law
 // or agreed to in writing, software, hardware and materials distributed under
-// this License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR
+// this License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 // CONDITIONS OF ANY KIND, either express or implied. See the License for the
 // specific language governing permissions and limitations under the License.
 
@@ -85,6 +85,8 @@ module peripherals
     input  logic              fetch_enable_i,
     output logic              fetch_enable_o,
     output logic              clk_gate_core_o,
+    //TMR Alert
+    input logic               tmr_err,
 
     output logic              fll1_req_o,
     output logic              fll1_wrn_o,
@@ -120,8 +122,10 @@ module peripherals
   logic [31:0]  clk_int;
   logic         s_uart_event;
   logic         i2c_event;
+  logic         tmr_event;
   logic         s_gpio_event;
-
+  
+ 
   //////////////////////////////////////////////////////////////////
   ///                                                            ///
   /// Peripheral Clock Gating                                    ///
@@ -386,6 +390,7 @@ module peripherals
   /// APB Slave 4: Event Unit                                    ///
   ///                                                            ///
   //////////////////////////////////////////////////////////////////
+  assign tmr_event = tmr_err; /*Sub Event of i2c with our alert */
 
   apb_event_unit
   apb_event_unit_i
@@ -403,8 +408,8 @@ module peripherals
     .PREADY           ( s_event_unit_bus.pready     ),
     .PSLVERR          ( s_event_unit_bus.pslverr    ),
 
-    .irq_i            ( {timer_irq, s_spim_event, s_gpio_event, s_uart_event, i2c_event, 23'b0} ),
-    .event_i          ( {timer_irq, s_spim_event, s_gpio_event, s_uart_event, i2c_event, 23'b0} ),
+    .irq_i            ( {timer_irq, s_spim_event, s_gpio_event, s_uart_event, i2c_event, tmr_event, 22'b0} ),
+    .event_i          ( {timer_irq, s_spim_event, s_gpio_event, s_uart_event, i2c_event, tmr_event, 22'b0} ),
     .irq_o            ( irq_o              ),
 
     .fetch_enable_i   ( fetch_enable_i     ),
@@ -433,7 +438,7 @@ module peripherals
     .PRDATA       ( s_i2c_bus.prdata      ),
     .PREADY       ( s_i2c_bus.pready      ),
     .PSLVERR      ( s_i2c_bus.pslverr     ),
-    .interrupt_o  ( i2c_event     ),
+    .interrupt_o  ( i2c_event      ),
     .scl_pad_i    ( scl_pad_i     ),
     .scl_pad_o    ( scl_pad_o     ),
     .scl_padoen_o ( scl_padoen_o  ),
