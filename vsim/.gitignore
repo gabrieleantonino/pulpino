@@ -4,6 +4,6 @@ modelsim.ini
 transcript
 
 
-tcl_files/config/vsim_ips.tcl
+
 verilator_libs/
 verilator/*
